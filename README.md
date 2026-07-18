@@ -1,0 +1,1 @@
+edit code in src, bundle into one executable file using build.sh/build.bat.
