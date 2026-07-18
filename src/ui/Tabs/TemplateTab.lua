@@ -1,4 +1,6 @@
-local function build(tab) 
+local servs = require("../../core/Services")
+
+local function build(tab)
     local TemplateSection = tab:AddSection("Template")
 
 	TemplateSection:AddSlider({
@@ -8,7 +10,7 @@ local function build(tab)
 		Default = 16,
 		Flag = "PlayerWalkSpeed",
 		Callback = function(value)
-            local humanoid = game.Players.LocalPlayer.Character.Humanoid
+            local humanoid = servs.Players.LocalPlayer.Character.Humanoid
             humanoid.WalkSpeed = value
 		end,
 	})

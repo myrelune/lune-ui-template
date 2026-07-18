@@ -67,7 +67,20 @@ function TabsRegistry.buildAll(window)
 end
 
 return TabsRegistry end function __DARKLUA_BUNDLE_MODULES.c():typeof(__modImpl())local v=__DARKLUA_BUNDLE_MODULES.cache.c if not v then v={c=__modImpl()}__DARKLUA_BUNDLE_MODULES.cache.c=v end return v.c end end do local function __modImpl()
-local function build(tab) 
+local clonegetserv = clonefunction and clonefunction(game.GetService) or game.GetService
+local cloneref = cloneref and (clonefunction and clonefunction(cloneref) or cloneref) or function(x) return x end
+
+local servs = setmetatable({}, {
+    __index = function(s, n)
+        s[n] = cloneref(clonegetserv(game, n))
+        return s[n]
+    end
+})
+
+return servs end function __DARKLUA_BUNDLE_MODULES.d():typeof(__modImpl())local v=__DARKLUA_BUNDLE_MODULES.cache.d if not v then v={c=__modImpl()}__DARKLUA_BUNDLE_MODULES.cache.d=v end return v.c end end do local function __modImpl()
+local servs = __DARKLUA_BUNDLE_MODULES.d()
+
+local function build(tab)
     local TemplateSection = tab:AddSection("Template")
 
 	TemplateSection:AddSlider({
@@ -77,13 +90,13 @@ local function build(tab)
 		Default = 16,
 		Flag = "PlayerWalkSpeed",
 		Callback = function(value)
-            local humanoid = game.Players.LocalPlayer.Character.Humanoid
+            local humanoid = servs.Players.LocalPlayer.Character.Humanoid
             humanoid.WalkSpeed = value
 		end,
 	})
 end
 
-return {build = build}end function __DARKLUA_BUNDLE_MODULES.d():typeof(__modImpl())local v=__DARKLUA_BUNDLE_MODULES.cache.d if not v then v={c=__modImpl()}__DARKLUA_BUNDLE_MODULES.cache.d=v end return v.c end end do local function __modImpl()
+return {build = build}end function __DARKLUA_BUNDLE_MODULES.e():typeof(__modImpl())local v=__DARKLUA_BUNDLE_MODULES.cache.e if not v then v={c=__modImpl()}__DARKLUA_BUNDLE_MODULES.cache.e=v end return v.c end end do local function __modImpl()
 local Library = __DARKLUA_BUNDLE_MODULES.b()
 local TabsRegistry = __DARKLUA_BUNDLE_MODULES.c()
 local Logger = __DARKLUA_BUNDLE_MODULES.a()
@@ -103,7 +116,7 @@ function UIManager.init(name)
 		return nil
 	end
 
-	TabsRegistry.register("Template", __DARKLUA_BUNDLE_MODULES.d().build, "play")
+	TabsRegistry.register("Template", __DARKLUA_BUNDLE_MODULES.e().build, "play")
 
 	TabsRegistry.buildAll(window)
 
@@ -120,11 +133,11 @@ function UIManager.getWindow()
 	return UIManager._window
 end
 
-return UIManager end function __DARKLUA_BUNDLE_MODULES.e():typeof(__modImpl())local v=__DARKLUA_BUNDLE_MODULES.cache.e if not v then v={c=__modImpl()}__DARKLUA_BUNDLE_MODULES.cache.e=v end return v.c end end end
+return UIManager end function __DARKLUA_BUNDLE_MODULES.f():typeof(__modImpl())local v=__DARKLUA_BUNDLE_MODULES.cache.f if not v then v={c=__modImpl()}__DARKLUA_BUNDLE_MODULES.cache.f=v end return v.c end end end
 getgenv().debugMode = true
 local Logger = __DARKLUA_BUNDLE_MODULES.a()
 
-local UIManager = __DARKLUA_BUNDLE_MODULES.e()
+local UIManager = __DARKLUA_BUNDLE_MODULES.f()
 UIManager.init("Template")
 
 Logger.info("Script running!")
