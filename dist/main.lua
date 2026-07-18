@@ -121,7 +121,7 @@ function UIManager.getWindow()
 end
 
 return UIManager end function __DARKLUA_BUNDLE_MODULES.e():typeof(__modImpl())local v=__DARKLUA_BUNDLE_MODULES.cache.e if not v then v={c=__modImpl()}__DARKLUA_BUNDLE_MODULES.cache.e=v end return v.c end end end
-getgenv().DebugMode = true
+getgenv().debugMode = true
 local Logger = __DARKLUA_BUNDLE_MODULES.a()
 
 local UIManager = __DARKLUA_BUNDLE_MODULES.e()
